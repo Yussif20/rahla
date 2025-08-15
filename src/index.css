@@ -1,0 +1,75 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+html {
+  font-family: "Zain", sans-serif;
+}
+a,
+button,
+select {
+  cursor: pointer;
+}
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #303e30; /* Equivalent to gray-50 */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #06cf82; /* Equivalent to gray-300 */
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0fdd8e; /* Equivalent to orange-500 */
+}
+
+::-webkit-scrollbar-corner {
+  background: #f9fafb; /* Equivalent to gray-50 */
+}
+
+/* Nav underline animation: dot to line */
+@keyframes nav-underline-expand {
+  0% {
+    width: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+  60% {
+    width: 100%;
+    left: 0;
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    left: 0;
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.nav-underline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3px;
+  background: #06cf82;
+  border-radius: 9999px;
+  width: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.nav-link:hover .nav-underline,
+.nav-link.active .nav-underline {
+  animation: nav-underline-expand 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 1;
+}
