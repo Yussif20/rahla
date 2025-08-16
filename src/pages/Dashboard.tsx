@@ -46,8 +46,8 @@ const Dashboard: React.FC = () => {
       >
         <ArrowLeft color="#fff" size={28} />
       </button>
-      {/* Main content: full width on sm/md, offset on lg */}
-      <div className="flex-1 flex flex-col w-full pr-0 lg:pr-[220px]">
+      {/* Main content: full width on sm/md, offset on lg with smaller left padding for md+ */}
+      <div className="flex-1 flex flex-col w-full pr-0 lg:pr-[220px] md:pl-2 lg:pl-4">
         <DashboardBar />
         <Routes>
           <Route
@@ -55,12 +55,14 @@ const Dashboard: React.FC = () => {
             element={
               <>
                 <div
-                  className="flex flex-col md:flex-row w-full pt-8 gap-8 items-center md:items-stretch"
+                  className="flex flex-col md:flex-row w-full pt-8 gap-8 items-stretch"
                   style={{ minHeight: "400px" }}
                 >
-                  {/* Left stats box */}
-                  <div className="w-full md:w-1/4 min-w-[260px] max-w-[320px] mb-6 md:mb-0">
-                    <DashboardStatsBox />
+                  {/* Left stats box: stretched to match right side height */}
+                  <div className="w-full md:w-1/4 min-w-[260px] max-w-[320px] mb-6 md:mb-0 flex h-full">
+                    <div className="flex-1 flex flex-col h-full">
+                      <DashboardStatsBox />
+                    </div>
                   </div>
                   {/* Right side: profit cards and chart box stacked */}
                   <div className="flex flex-col flex-1 gap-4 h-full w-full md:w-3/4">
