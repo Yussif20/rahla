@@ -3,11 +3,15 @@
 
 html {
   font-family: "Zain", sans-serif;
+  direction: rtl;
 }
 a,
 button,
 select {
   cursor: pointer;
+}
+textarea {
+  resize: none;
 }
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {

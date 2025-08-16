@@ -55,7 +55,7 @@ const Dashboard: React.FC = () => {
             element={
               <>
                 <div
-                  className="flex flex-col md:flex-row w-full pt-8 gap-8 items-stretch"
+                  className="flex flex-col md:flex-row-reverse w-full pt-8 gap-8 items-stretch"
                   style={{ minHeight: "400px" }}
                 >
                   {/* Left stats box: stretched to match right side height */}
