@@ -13,10 +13,13 @@ const tabs = [
 const orders = Array(8)
   .fill(null)
   .map((_, idx) => ({
-    product: "حقيبة يد",
-    customer: "محمود أحمد",
-    address: "22 ش المدينة المنورة, العراق",
-    status: idx % 2 === 0 ? "فى الشحن" : "تحت التجهيز",
+    product: "dashboardOrders.productName",
+    customer: "dashboardOrders.customerName",
+    address: "dashboardOrders.address",
+    status:
+      idx % 2 === 0
+        ? "dashboardOrders.status.shipping"
+        : "dashboardOrders.status.preparing",
     platform: idx % 2 === 0 ? "facebook" : "instagram",
   }));
 
@@ -54,22 +57,29 @@ const DashboardOrders: React.FC = () => {
             >
               ×
             </button>
-            <h2 className="text-[22px] font-bold mb-4">معلومات المنتج</h2>
+            <h2 className="text-[22px] font-bold mb-4">
+              {t("dashboardOrders.modal.title")}
+            </h2>
             <div className="mb-2">
-              <b>المنتج:</b> {modalOrder.product}
+              <b>{t("dashboardOrders.modal.product")}:</b>{" "}
+              {t(modalOrder.product)}
             </div>
             <div className="mb-2">
-              <b>العميل:</b> {modalOrder.customer}
+              <b>{t("dashboardOrders.modal.customer")}:</b>{" "}
+              {t(modalOrder.customer)}
             </div>
             <div className="mb-2">
-              <b>العنوان:</b> {modalOrder.address}
+              <b>{t("dashboardOrders.modal.address")}:</b>{" "}
+              {t(modalOrder.address)}
             </div>
             <div className="mb-2">
-              <b>الحالة:</b> {modalOrder.status}
+              <b>{t("dashboardOrders.modal.status")}:</b> {t(modalOrder.status)}
             </div>
             <div className="mb-2">
-              <b>المنصة:</b>{" "}
-              {modalOrder.platform === "facebook" ? "فيس بوك" : "انستجرام"}
+              <b>{t("dashboardOrders.modal.platform")}:</b>{" "}
+              {modalOrder.platform === "facebook"
+                ? t("dashboardOrders.platform.facebook")
+                : t("dashboardOrders.platform.instagram")}
             </div>
           </div>
         </div>
@@ -96,22 +106,22 @@ const DashboardOrders: React.FC = () => {
         {/* Headline Row */}
         <div className="grid grid-cols-6 gap-2 md:gap-4 pb-2 md:pb-4 border-b border-[#444] text-right w-full justify-items-center">
           <span className="text-white text-[11px] md:text-[16px] font-bold">
-            أسم المنتج
+            {t("dashboardOrders.table.product")}
           </span>
           <span className="text-white text-[11px] md:text-[16px] font-bold">
-            اسم العميل
+            {t("dashboardOrders.table.customer")}
           </span>
           <span className="text-white text-[11px] md:text-[16px] font-bold">
-            العنوان
+            {t("dashboardOrders.table.address")}
           </span>
           <span className="text-white text-[11px] md:text-[16px] font-bold">
-            حالة الطلب
+            {t("dashboardOrders.table.status")}
           </span>
           <span className="text-white text-[11px] md:text-[16px] font-bold">
-            أسم المنصة
+            {t("dashboardOrders.table.platform")}
           </span>
           <span className="text-white text-[11px] md:text-[16px] font-bold">
-            الاجراءات
+            {t("dashboardOrders.table.actions")}
           </span>
         </div>
         {/* Order Rows */}
@@ -120,23 +130,23 @@ const DashboardOrders: React.FC = () => {
             key={idx}
             className="grid grid-cols-6 gap-2 md:gap-4 py-2 md:py-3 items-center text-[11px] md:text-[16px] font-normal leading-[150%] text-white text-right w-full justify-items-center"
           >
-            <span>{order.product}</span>
-            <span>{order.customer}</span>
-            <span>{order.address}</span>
+            <span>{t(order.product)}</span>
+            <span>{t(order.customer)}</span>
+            <span>{t(order.address)}</span>
             <span className="flex items-center gap-1 md:gap-2">
-              {order.status === "فى الشحن" ? (
+              {order.status === "dashboardOrders.status.shipping" ? (
                 <span
                   className="px-2 md:px-4 py-0.5 md:py-1 rounded-full border border-[#9ecc52] text-[#9ecc52] text-[11px] md:text-[16px] font-normal"
                   style={{ minWidth: "60px", justifyContent: "center" }}
                 >
-                  {order.status}
+                  {t(order.status)}
                 </span>
               ) : (
                 <span
                   className="px-2 md:px-4 py-0.5 md:py-1 rounded-full border border-[#ac951b] text-[#ac951b] text-[11px] md:text-[16px] font-normal"
                   style={{ minWidth: "60px", justifyContent: "center" }}
                 >
-                  {order.status}
+                  {t(order.status)}
                 </span>
               )}
             </span>
@@ -160,7 +170,9 @@ const DashboardOrders: React.FC = () => {
                   )}
                 </span>
                 <span>
-                  {order.platform === "facebook" ? "فيس بوك" : "انستجرام"}
+                  {order.platform === "facebook"
+                    ? t("dashboardOrders.platform.facebook")
+                    : t("dashboardOrders.platform.instagram")}
                 </span>
               </span>
             </span>

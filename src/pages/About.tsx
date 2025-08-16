@@ -1,4 +1,7 @@
-const About = () => (
-  <div className="p-8 text-white text-2xl">صفحة عن المنصة (About)</div>
-);
+import { useTranslation } from "react-i18next";
+
+const About = () => {
+  const { t } = useTranslation();
+  return <div className="p-8 text-white text-2xl">{t("pages.about")}</div>;
+};
 export default About;

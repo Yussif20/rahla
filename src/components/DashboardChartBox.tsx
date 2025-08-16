@@ -1,37 +1,42 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const weekDaysAr = [
-  "الأحد",
-  "الاثنين",
-  "الثلاثاء",
-  "الأربعاء",
-  "الخميس",
-  "الجمعة",
-  "السبت",
+const weekDays = [
+  "dashboardChartBox.weekdays.sunday",
+  "dashboardChartBox.weekdays.monday",
+  "dashboardChartBox.weekdays.tuesday",
+  "dashboardChartBox.weekdays.wednesday",
+  "dashboardChartBox.weekdays.thursday",
+  "dashboardChartBox.weekdays.friday",
+  "dashboardChartBox.weekdays.saturday",
 ];
 
-const monthWeeksAr = ["الأسبوع 1", "الأسبوع 2", "الأسبوع 3", "الأسبوع 4"];
+const monthWeeks = [
+  "dashboardChartBox.monthWeeks.1",
+  "dashboardChartBox.monthWeeks.2",
+  "dashboardChartBox.monthWeeks.3",
+  "dashboardChartBox.monthWeeks.4",
+];
 
-const monthsAr = [
-  "يناير",
-  "فبراير",
-  "مارس",
-  "ابريل",
-  "مايو",
-  "يونيو",
-  "يوليو",
-  "أغسطس",
-  "سبتمبر",
-  "أكتوبر",
-  "نوفمبر",
-  "ديسمبر",
+const months = [
+  "dashboardChartBox.months.jan",
+  "dashboardChartBox.months.feb",
+  "dashboardChartBox.months.mar",
+  "dashboardChartBox.months.apr",
+  "dashboardChartBox.months.may",
+  "dashboardChartBox.months.jun",
+  "dashboardChartBox.months.jul",
+  "dashboardChartBox.months.aug",
+  "dashboardChartBox.months.sep",
+  "dashboardChartBox.months.oct",
+  "dashboardChartBox.months.nov",
+  "dashboardChartBox.months.dec",
 ];
 
 const chartOptions = [
-  { key: "week", label: "هذا الاسبوع" },
-  { key: "month", label: "هذا الشهر" },
-  { key: "year", label: "هذا العام" },
+  { key: "week", label: "dashboardChartBox.options.week" },
+  { key: "month", label: "dashboardChartBox.options.month" },
+  { key: "year", label: "dashboardChartBox.options.year" },
 ];
 
 const chartDataSets = {
@@ -45,16 +50,16 @@ const DashboardChartBox = () => {
   const [selected, setSelected] = useState("week");
   const chartData = chartDataSets[selected];
   let xLabels: string[] = [];
-  if (selected === "week") xLabels = weekDaysAr;
-  else if (selected === "month") xLabels = monthWeeksAr;
-  else if (selected === "year") xLabels = monthsAr;
+  if (selected === "week") xLabels = weekDays.map((key) => t(key));
+  else if (selected === "month") xLabels = monthWeeks.map((key) => t(key));
+  else if (selected === "year") xLabels = months.map((key) => t(key));
 
   return (
     <div className="w-full flex flex-col gap-3 sm:gap-4 md:gap-6" dir="rtl">
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3">
         <h2 className="text-white text-lg sm:text-xl md:text-2xl font-bold mt-3 sm:mt-4">
-          أحصائيات المبيعات
+          {t("dashboardChartBox.title")}
         </h2>
         <div></div>
       </div>
@@ -62,7 +67,7 @@ const DashboardChartBox = () => {
       <div>
         <div className="md:hidden bg-[#3d3d3d] rounded-2xl p-4 sm:p-5 md:p-6 w-full min-h-[100px] sm:min-h-[120px] flex items-center justify-center">
           <span className="text-white text-sm sm:text-base md:text-lg font-bold text-center">
-            نأسف، الرسوم البيانية متاحة فقط في نسخة سطح المكتب
+            {t("dashboardChartBox.mobileMessage")}
           </span>
         </div>
         <div className="hidden md:block">
@@ -74,7 +79,7 @@ const DashboardChartBox = () => {
                 style={{ background: "#06cf82" }}
               ></span>
               <span className="text-white text-sm sm:text-base md:text-lg font-[400] leading-[24px]">
-                الايرادات
+                {t("dashboardChartBox.revenue")}
               </span>
             </div>
             {/* Select at top left for RTL */}
@@ -87,7 +92,7 @@ const DashboardChartBox = () => {
               >
                 {chartOptions.map((opt) => (
                   <option key={opt.key} value={opt.key}>
-                    {opt.label}
+                    {t(opt.label)}
                   </option>
                 ))}
               </select>
